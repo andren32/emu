@@ -35,7 +35,7 @@ pub struct CPU {
 impl CPU {
     pub fn new() -> CPU {
         CPU {
-            a: 0, x: 0, y: 0, sp: 0, pc: 0,
+            a: 0, x: 0, y: 0, sp: 0xFD, pc: 0,
             c: false, z: false, i: true, d: false, b: false, u: false, v: false, n: false,
 
             mem: vec!(0; 0x10000),
@@ -43,15 +43,20 @@ impl CPU {
     }
 
     fn reset(&mut self) {
-
     }
 
     fn read_mem(&mut self, &addr: &u16) -> u8 {
-        0
+        self.mem[addr as usize]
+    }
+
+    fn read_mem16(&mut self, &addr: &u16) -> u16 {
+        let high: u16 = (self.mem[addr as usize] as u16) << 8;
+        let low: u16 = self.mem[(addr+1) as usize] as u16;
+        high | low
     }
 
     fn write_mem(&mut self, &addr: &u16, &data: &u8) {
-
+        self.mem[addr as usize] = data;
     }
 
     fn execute(&mut self) {
