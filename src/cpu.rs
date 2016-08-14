@@ -42,23 +42,47 @@ impl CPU {
         }
     }
 
+    // reset cpu
     fn reset(&mut self) {
     }
 
+    // read one byte from internal RAM
     fn read_mem(&mut self, &addr: &u16) -> u8 {
         self.mem[addr as usize]
     }
 
+    // read two bytes from internal RAM
     fn read_mem16(&mut self, &addr: &u16) -> u16 {
         let high: u16 = (self.mem[addr as usize] as u16) << 8;
         let low: u16 = self.mem[(addr+1) as usize] as u16;
         high | low
     }
 
+    // pop element from stack
+    fn pop(&mut self) -> u8 {
+        // stack starts at 0x100 and goes to 0x1FF stackpointer goes from 0x00 to 0xFF
+        // so bitwise or gets us the address
+        let addr = 0x100 | (self.sp as u16);
+        let data = self.read_mem(&addr);
+        self.sp += 1;
+        data
+    }
+
+    // push element on stack
+    fn push(&mut self, data: u8) {
+        // stack starts at 0x100 and goes to 0x1FF stackpointer goes from 0x00 to 0xFF
+        // so bitwise or gets us the address
+        let addr = 0x100 | (self.sp as u16);
+        self.write_mem(&addr, &data);
+        self.sp -= 1;
+    }
+
+    // write one byte to internal RAM
     fn write_mem(&mut self, &addr: &u16, &data: &u8) {
         self.mem[addr as usize] = data;
     }
 
+    // execute an instruction
     fn execute(&mut self) {
 
     }
