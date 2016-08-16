@@ -35,7 +35,7 @@ pub struct CPU {
     // 0xC000 => PRG-ROM (Lower Bank)
     // 0x10000 => PRG-ROM (Upper Bank)
     mem: Vec<u8>,
-    mmu: MMU
+    mmu: MMU,
 }
 
 impl CPU {
@@ -56,7 +56,7 @@ impl CPU {
         let addr = 0x100 | (self.sp as u16);
         self.sp += 1;
 
-        self.mmu.rb(addr);
+        self.mmu.rb(addr)
     }
 
     // push element on stack

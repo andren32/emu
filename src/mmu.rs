@@ -19,14 +19,22 @@ impl MMU {
     pub fn new(ram: RAM) -> MMU {
         MMU {ram: ram}
     }
+
+    pub fn rb(&self, addr: u16) -> u8 {
+        self.ram.rb(addr)
+    }
+
+    pub fn wb(&mut self, addr: u16, data: u8) {
+        self.ram.wb(addr, data);
+    }
 }
 
 impl Memory for MMU {
     fn rb(&self, addr: u16) -> u8 {
-        self.ram.rb(addr)
+        self.rb(addr)
     }
 
     fn wb(&mut self, addr: u16, data: u8) {
-        self.ram.wb(addr, data);
+        self.wb(addr, data);
     }
 }
