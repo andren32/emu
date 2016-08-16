@@ -23,19 +23,6 @@ pub struct CPU {
     n: bool, // negative flag
 
 
-    // Memory
-    // 0x100 => Zero Page
-    // 0x200 => Stack
-    // 0x800 => RAM
-    // 0x2000 => Mirrors (0-0x7FF)
-    // 0x2008 => I/O Registers
-    // 0x4000 => Mirrors (0x2000-0x2007)
-    // 0x4020 => I/O Registers
-    // 0x6000 => Expansion ROM
-    // 0x8000 => SRAM
-    // 0xC000 => PRG-ROM (Lower Bank)
-    // 0x10000 => PRG-ROM (Upper Bank)
-    mem: Vec<u8>,
     mmu: MMU,
 }
 
@@ -45,7 +32,6 @@ impl CPU {
             a: 0, x: 0, y: 0, sp: 0xFD, pc: 0,
             c: false, z: false, i: true, d: false, b: false, u: false, v: false, n: false,
 
-            mem: vec!(0; 0x10000),
             mmu: mmu
         }
     }

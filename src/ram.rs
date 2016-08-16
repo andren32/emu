@@ -17,6 +17,10 @@ impl RAM {
             *b = 0;
         }
     }
+
+    pub fn len(&self) -> usize {
+        self.mem.len()
+    }
 }
 
 impl Memory for RAM {
