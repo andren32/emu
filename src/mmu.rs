@@ -44,6 +44,9 @@ impl MMU {
         self.ram.rb(self.phys_addr(addr))
     }
 
+    // non-lexical borrows is not available as of 1.10,
+    // therefore self.ram.wb(self.phys_addr(addr), data)
+    // will not compile
     fn wb_ram(&mut self, addr: u16, data: u8) {
         let phys = self.phys_addr(addr);
         self.ram.wb(phys, data);
