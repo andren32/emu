@@ -5,9 +5,11 @@
 use cpu::CPU;
 use mmu::MMU;
 use ram::RAM;
+use cartridge::Cartridge;
 
 pub struct Console {
     ram: RAM,
+    cartridge: Cartridge,
     mmu: MMU,
     cpu: CPU,
 }
@@ -15,9 +17,10 @@ pub struct Console {
 impl Console {
     pub fn new() -> Console {
         Console {
+            cartridge: Cartridge::new(),
+            ram: RAM::new()
             cpu: CPU::new(),
             mmu: MMU::new(),
-            ram: RAM::new()
         }
     }
 

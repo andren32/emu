@@ -5,6 +5,7 @@ mod mmu;
 mod console;
 mod cpu;
 mod ram;
+mod cartridge;
 
 use console::Console;
 use std::fs::File;
