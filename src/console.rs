@@ -7,20 +7,20 @@ use mmu::MMU;
 use ram::RAM;
 use cartridge::Cartridge;
 
+// NES contains 2 kB = 2^11 bytes of memory
+const CPURAM: u16 = (1 << 11) as u16;
+
 pub struct Console {
-    ram: RAM,
-    cartridge: Cartridge,
-    mmu: MMU,
-    cpu: CPU,
+    cpu: CPU
 }
 
 impl Console {
     pub fn new() -> Console {
+        let cartridge = Cartridge::new();
+        let ram =  RAM::new(CPURAM);
+        let mmu = MMU::new(ram);
         Console {
-            cartridge: Cartridge::new(),
-            ram: RAM::new()
-            cpu: CPU::new(),
-            mmu: MMU::new(),
+            cpu: CPU::new(mmu),
         }
     }
 

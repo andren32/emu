@@ -8,11 +8,25 @@
 // give the logical devices as little access to each other as
 // possible, to avoid complex mutation patterns
 
+use ram::RAM;
+use memory::Memory;
+
 pub struct MMU {
+    ram: RAM,
 }
 
 impl MMU {
-    pub fn new() -> MMU {
-        MMU { }
+    pub fn new(ram: RAM) -> MMU {
+        MMU {ram: ram}
+    }
+}
+
+impl Memory for MMU {
+    fn rb(&self, addr: u16) -> u8 {
+        self.ram.rb(addr)
+    }
+
+    fn wb(&mut self, addr: u16, data: u8) {
+        self.ram.wb(addr, data);
     }
 }

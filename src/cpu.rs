@@ -1,6 +1,8 @@
 // CPU: emulates the 6502 cpu inside an NES
 // efforts will be focused on the NTSC version for simplicity
 
+use mmu::MMU;
+
 pub struct CPU {
     a: u8, // accumulator register
     x: u8, // index register 1
@@ -33,15 +35,17 @@ pub struct CPU {
     // 0xC000 => PRG-ROM (Lower Bank)
     // 0x10000 => PRG-ROM (Upper Bank)
     mem: Vec<u8>,
+    mmu: MMU
 }
 
 impl CPU {
-    pub fn new() -> CPU {
+    pub fn new(mmu: MMU) -> CPU {
         CPU {
             a: 0, x: 0, y: 0, sp: 0xFD, pc: 0,
             c: false, z: false, i: true, d: false, b: false, u: false, v: false, n: false,
 
             mem: vec!(0; 0x10000),
+            mmu: mmu
         }
     }
 
