@@ -17,22 +17,15 @@ impl RAM {
             *b = 0;
         }
     }
-
-    pub fn rb(&self, addr: u16) -> u8 {
-        self.mem[addr as usize]
-    }
-
-    pub fn wb(&mut self, addr: u16, data: u8) {
-        self.mem[addr as usize] = data;
-    }
 }
 
 impl Memory for RAM {
+
     fn rb(&self, addr: u16) -> u8 {
-        self.rb(addr)
+        self.mem[addr as usize]
     }
 
     fn wb(&mut self, addr: u16, data: u8) {
-        self.wb(addr, data);
+        self.mem[addr as usize] = data;
     }
 }

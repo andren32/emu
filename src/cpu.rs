@@ -2,6 +2,7 @@
 // efforts will be focused on the NTSC version for simplicity
 
 use mmu::MMU;
+use memory::Memory;
 
 pub struct CPU {
     a: u8, // accumulator register
