@@ -1,3 +1,6 @@
+// CPU: emulates the 6502 cpu inside an NES
+// efforts will be focused on the NTSC version for simplicity
+
 pub struct CPU {
     a: u8, // accumulator register
     x: u8, // index register 1

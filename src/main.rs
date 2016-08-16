@@ -1,12 +1,17 @@
 #![allow(dead_code)]
 
+mod memory;
+mod mmu;
+mod console;
+mod cpu;
+mod ram;
+
+use console::Console;
 use std::fs::File;
 use std::io::Read;
 
-mod cpu;
-
 fn main() {
-    let cpu = cpu::CPU::new();
+    let console = Console::new();
 }
 
 fn read_rom() -> Vec<u8> {
