@@ -5,17 +5,16 @@
 use cpu::CPU;
 use mmu::MMU;
 use ram::RAM;
-use cartridge::Cartridge;
 
 // NES contains 2 kB = 2^11 bytes of memory
 const CPURAM: u16 = (1 << 11) as u16;
 
 pub struct Console {
-    cpu: CPU
+    cpu: CPU,
 }
 
 impl Console {
-    pub fn new() -> Console {
+    pub fn new(cartridge: Cartridge) -> Console {
         // right now ownership is transferred,
         // which could be a problem if
         // resources need to be shared
@@ -23,12 +22,8 @@ impl Console {
         // make use of the Memory trait since
         // this interface is all that's needed
 
-        let cartridge = Cartridge::new();
-        let ram =  RAM::new(CPURAM);
+        let ram = RAM::new(CPURAM);
         let mmu = MMU::new(ram);
-        Console {
-            cpu: CPU::new(mmu),
-        }
+        Console { cpu: CPU::new(mmu) }
     }
-
 }
