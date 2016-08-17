@@ -8,6 +8,10 @@ pub struct Cartridge {
 
 impl Cartridge {
     pub fn new() -> Cartridge {
-        Cartridge {}
+        Cartridge {
+            prg: Vec::new(),
+            chr: Vec::new(),
+            sram: Vec::new(),
+        }
     }
 }

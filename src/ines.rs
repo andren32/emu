@@ -8,6 +8,6 @@ struct Header {
 
 }
 
-fn load_file(path: Path) -> Cartridge {
+fn load_file(path: &str) -> Cartridge {
     unimplemented!();
 }

@@ -6,13 +6,15 @@ mod console;
 mod cpu;
 mod ram;
 mod cartridge;
+mod ines;
 
 use console::Console;
 use std::fs::File;
 use std::io::Read;
+use cartridge::Cartridge;
 
 fn main() {
-    let console = Console::new();
+    let console = Console::new(Cartridge::new());
 }
 
 fn read_rom() -> Vec<u8> {

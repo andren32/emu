@@ -5,6 +5,7 @@
 use cpu::CPU;
 use mmu::MMU;
 use ram::RAM;
+use cartridge::Cartridge;
 
 // NES contains 2 kB = 2^11 bytes of memory
 const CPURAM: u16 = (1 << 11) as u16;
