@@ -8,7 +8,7 @@ pub struct CPU {
     a: u8, // accumulator register
     x: u8, // index register 1
     y: u8, // index register 2
-    sp: u8, //stack pointer
+    sp: u8, // stack pointer
     pc: u16, // program counter
 
     // These flags represent the p register which is actually just a one byte register
@@ -22,17 +22,27 @@ pub struct CPU {
     v: bool, // overflow flag
     n: bool, // negative flag
 
-
     mmu: MMU,
 }
 
 impl CPU {
     pub fn new(mmu: MMU) -> CPU {
         CPU {
-            a: 0, x: 0, y: 0, sp: 0xFD, pc: 0,
-            c: false, z: false, i: true, d: false, b: false, u: false, v: false, n: false,
+            a: 0,
+            x: 0,
+            y: 0,
+            sp: 0xFD,
+            pc: 0,
+            c: false,
+            z: false,
+            i: true,
+            d: false,
+            b: false,
+            u: false,
+            v: false,
+            n: false,
 
-            mmu: mmu
+            mmu: mmu,
         }
     }
 
@@ -57,7 +67,5 @@ impl CPU {
     }
 
     // execute an instruction
-    fn execute(&mut self) {
-
-    }
+    fn execute(&mut self) {}
 }
